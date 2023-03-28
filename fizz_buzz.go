@@ -5,6 +5,7 @@ import (
 )
 
 func FizzBuzz(number int) string {
+  return "broke"
 	if number%15 == 0 {
 		return "FizzBuzz"
 	}
