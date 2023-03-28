@@ -1,0 +1,30 @@
+format_version: 10
+pipelines:
+  fizz-buzz:
+    group: My-Pipelines
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    materials:
+      git-dc4b402:
+        git: https://github.com/kvnknowles-ix0/goFizzBuzz
+        shallow_clone: false
+        auto_update: true
+        branch: main
+    stages:
+    - Test-and-Report:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+          allow_only_on_success: false
+        jobs:
+          run-unit-tests:
+            timeout: 0
+            tasks:
+            - exec:
+                arguments:
+                - test
+                command: go
+                run_if: passed
